@@ -3,7 +3,7 @@
 -- shelter
 INSERT INTO Shelter (name, address, current_capacity, max_capacity) VALUES
 ('Happy Tails', 'Mainstreet 1', 60, 100),
-('City Paws', 'Citystreet 3', 85, 200);
+('City Paws', 'Citystreet 3', 85, 200),
 ('Second Chance Farm', 'Farmroad 12, Utrecht', 22, 60),
 ('Furever Home', 'Oakavenue 7, Maastricht', 35, 70);
 
@@ -51,8 +51,8 @@ INSERT INTO Intake (animal_id, shelter_id, intake_date) VALUES
 (5, 1, '2023-10-06'),
 (6, 1, '2026-02-04'),
 (7, 2, '2024-01-11'),
-(8,  2, '2025-07-22'),
-(9,  2, '2026-04-14'),
+(8, 2, '2025-07-22'),
+(9, 2, '2026-04-14'),
 (10, 3, '2025-09-01'),
 (11, 3, '2025-09-02'),
 (12, 3, '2024-12-12'),

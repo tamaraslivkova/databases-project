@@ -5,7 +5,6 @@ import os
 import mysql.connector
 from dotenv import load_dotenv
 
-# Load variables from the local .env file
 load_dotenv()
 
 def get_connection():
@@ -38,5 +37,92 @@ def get_shelter(shelter_id):
     conn.close()
     return result
 
+def update_shelter_details(shelter_id, name, address, max_capacity, current_capacity):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(
+        """
+        UPDATE Animals 
+        SET name = %s, address = %s, max_capacity = %s, current_capacity = %s
+        WHERE animal_id = %s
+        """,
+        (shelter_id, name, address, max_capacity, current_capacity)
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+
+def remove_shelter(shelter_id):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM Shelter WHERE shelter_id = %s", (shelter_id,))
+    conn.commit()
+    deleted_rows = cur.rowcount
+    cur.close()
+    conn.close()
+    return deleted_rows
+
+def add_animal(shelter_id, name, age, species, breed, sex):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO Animals (shelter_id, name, age, species, breed, sex) VALUES (%s, %s, %s, %s, %s)",
+        (shelter_id, name, age, species, breed, sex)
+    )
+    conn.commit()
+    new_id = cur.lastrowid
+    cur.close()
+    conn.close()
+    return new_id
+
+def get_animal(animal_id):
+    conn = get_connection()
+    cur = conn.cursor(dictionary=True)
+    cur.execute(
+        "SELECT * FROM Animals WHERE animal_id = %s", (animal_id,)
+    )
+    result = cur.fetchone()
+    cur.close()
+    conn.close()
+    return result
+
+def update_animal_details(animal_id, name, age, breed):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(
+        """
+        UPDATE Animals 
+        SET name = %s, age = %s, breed = %s 
+        WHERE animal_id = %s
+        """,
+        (name, age, breed, animal_id)
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+
+
+def remove_animal (animal_id):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(
+        "DELETE  FROM Animals WHERE animal_id = %s", (animal_id,)
+    )
+    conn.commit()
+    deleted_rows = cur.rowcount
+    cur.close()
+    conn.close()
+    return deleted_rows
+
+## testing the adding function
+
+new_shelter_id = add_shelter(
+    name="Paws & Claws Haven",
+    address="River Road 45, Amsterdam",
+    max_capacity=150,
+    current_capacity=0,
+)
+
+print(f"Shelter added successfully with ID: {new_shelter_id}")
 
 
