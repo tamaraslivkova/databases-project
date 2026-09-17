@@ -1,13 +1,13 @@
--- mock data
+# mock data
 
--- shelter
+# shelter
 INSERT INTO Shelter (address, current_capacity, max_capacity) VALUES
 ('Mainstreet 1, Amsterdam', 58, 100),
 ('Citystreet 3, Rotterdam', 40, 85),
 ('Farmroad 12, Utrecht',    22, 60),
 ('Oakavenue 7, Maastricht', 35, 70);
 
--- staff
+# staff
 INSERT INTO Staff (name, role, shelter_id) VALUES
 ('Kiki',    'Vet',            1),
 ('Ariana',  'Assistant Vet',  1),
@@ -22,7 +22,7 @@ INSERT INTO Staff (name, role, shelter_id) VALUES
 ('Mila',    'Caretaker',      4);
 
 
--- animals
+# animals
 INSERT INTO Animals (age, species, breed, sex, shelter_id) VALUES
 (2,  'dog',    'Border Collie',     'Male',    1),
 (1,  'cat',    'Ragdoll',           'Male',    1),
@@ -44,7 +44,7 @@ INSERT INTO Animals (age, species, breed, sex, shelter_id) VALUES
 (1,  'cat',    'Sphynx',            'Female',  4);
 
 
--- intake
+# intake
 INSERT INTO Intake (intake_type, date, animal_id, shelter_id) VALUES
 ('stray',      '2024-03-03', 1,  1),
 ('surrender',  '2025-05-27', 2,  1),
