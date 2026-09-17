@@ -36,3 +36,16 @@ FROM Animals
 JOIN Shelter ON Animals.shelter_id = Shelter.shelter_id
 JOIN Intake ON Animals.animal_id = Intake.animal_id
 ORDER BY Intake.intake_date DESC;
+
+-- finding shelters with no vets currently employed
+SELECT
+    s.shelter_id,
+    s.name
+FROM Shelter s
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM Staff st
+    WHERE st.shelter_id = s.shelter_id
+      AND st.role = 'Vet'
+)
+ORDER BY s.shelter_id;
