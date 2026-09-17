@@ -1,3 +1,5 @@
+Relational Schema
+
 Shelter (*shelter_id, Address, Capacity, Current capacity, Max capacity)
 Animals (*animal_id, **shelter_id, Age, Species, Breed, Sex)
 Staff (*staff_id, **shelter_id, Name, Role)
