@@ -114,7 +114,7 @@ def remove_animal (animal_id):
     conn.close()
     return deleted_rows
 
-## testing the adding function
+## testing the adding shelter function
 
 new_shelter_id = add_shelter(
     name="Paws & Claws Haven",
@@ -125,7 +125,7 @@ new_shelter_id = add_shelter(
 
 print(f"Shelter added successfully with ID: {new_shelter_id}")
 
-## testing the adding function
+## testing the adding animal function
 new_animal_id = add_animal(
     shelter_id=1,
     name="Adam",
