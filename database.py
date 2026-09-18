@@ -15,7 +15,7 @@ def get_connection():
         database=os.getenv("DB_NAME", "shelter_db")
     )
 
-def add_shelter(name, address, max_capacity, current_capacity=0):
+def add_shelter(name, address, current_capacity, max_capacity,):
     conn = get_connection()
     cur = conn.cursor()
     cur.execute(
@@ -66,7 +66,7 @@ def add_animal(shelter_id, name, age, species, breed, sex):
     conn = get_connection()
     cur = conn.cursor()
     cur.execute(
-        "INSERT INTO Animals (shelter_id, name, age, species, breed, sex) VALUES (%s, %s, %s, %s, %s)",
+        "INSERT INTO Animals (shelter_id, name, age, species, breed, sex) VALUES (%s, %s, %s, %s, %s, %s)",
         (shelter_id, name, age, species, breed, sex)
     )
     conn.commit()
@@ -124,5 +124,17 @@ new_shelter_id = add_shelter(
 )
 
 print(f"Shelter added successfully with ID: {new_shelter_id}")
+
+## testing the adding function
+new_animal_id = add_animal(
+    shelter_id=1,
+    name="Adam",
+    age=2,
+    species="dog",
+    breed="labradoodle",
+    sex="Male",
+)
+
+print(f"Animal added successfully with ID: {new_animal_id}")
 
 
