@@ -30,10 +30,8 @@ GROUP BY Shelter.name;
 SELECT
     Animals.name AS animal_name,
     Animals.species,
-    Shelter.name AS shelter_name,
     Intake.intake_date
 FROM Animals
-JOIN Shelter ON Animals.shelter_id = Shelter.shelter_id
 JOIN Intake ON Animals.animal_id = Intake.animal_id
 ORDER BY Intake.intake_date DESC;
 
