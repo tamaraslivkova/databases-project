@@ -14,6 +14,7 @@
 https://github.com/user-attachments/assets/fb5e8017-74b8-4e72-8312-ed8693603f8c
 
 ```text
+Repository
 ├── .env                  # Local database credentials 
 ├── .env.example          # Template for environment variables
 ├── schema.sql            # Table definitions (CREATE TABLE)
