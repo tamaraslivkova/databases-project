@@ -12,8 +12,8 @@ CREATE TABLE Shelter (
     shelter_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     address VARCHAR(255) NOT NULL,
-    current_capacity INT NOT NULL DEFAULT 0 CHECK (current_capacity >= 0),
-    max_capacity INT NOT NULL,
+    current_capacity INT DEFAULT 0 CHECK (current_capacity >= 0),
+    max_capacity INT,
     CHECK (max_capacity >= current_capacity)
 );
 
@@ -31,7 +31,7 @@ CREATE TABLE Staff (
 
 CREATE TABLE Animals (
     animal_id INT AUTO_INCREMENT PRIMARY KEY,
-    shelter_id INT NOT NULL,
+    shelter_id INT,
     name VARCHAR(50) NOT NULL,
     age INT CHECK (age >= 0),
     species VARCHAR(100) NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE Animals (
 CREATE TABLE Intake (
     intake_id INT AUTO_INCREMENT PRIMARY KEY,
     animal_id INT NOT NULL,
-    shelter_id INT NOT NULL,
+    shelter_id INT,
     intake_date DATE NOT NULL,
     FOREIGN KEY (animal_id) REFERENCES Animals(animal_id)
         ON DELETE CASCADE
