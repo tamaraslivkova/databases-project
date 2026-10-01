@@ -11,7 +11,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE Shelter (
     shelter_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    address VARCHAR(255) NOT NULL,
+    address VARCHAR(255),
     current_capacity INT DEFAULT 0 CHECK (current_capacity >= 0),
     max_capacity INT,
     CHECK (max_capacity >= current_capacity)
