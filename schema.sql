@@ -32,7 +32,7 @@ CREATE TABLE Staff (
 CREATE TABLE Animals (
     animal_id INT AUTO_INCREMENT PRIMARY KEY,
     shelter_id INT,
-    name VARCHAR(50) NOT NULL,
+    name VARCHAR(50),
     age INT CHECK (age >= 0),
     species VARCHAR(100) NOT NULL,
     breed VARCHAR(100),
