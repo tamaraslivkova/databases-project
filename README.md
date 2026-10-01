@@ -8,18 +8,30 @@
 * Database schema for Shelters, Staff, Animals, and Intake logs.
 * Mock dataset (`seed.sql`)
 
-## Project Structure
+
 
 ## Week 4: Stakeholder video
 https://github.com/user-attachments/assets/fb5e8017-74b8-4e72-8312-ed8693603f8c
 
+## Project Structure
 ```text
-Repository
-├── .env                  # Local database credentials 
-├── .env.example          # Template for environment variables
-├── schema.sql            # Table definitions (CREATE TABLE)
-├── queries.sql           # The sql queries to interact with the database
-├── seed.sql              # Mock dataset 
-├── database.py           # Database connection 
-└── relational_schema.txt # ERD turned into relational schema
+databases-project/
+├── resources/
+│   ├── Austin_Animal_Center_Outcomes_20261001.csv
+│   └── petfinder_shelters.csv
+├── week1/
+│   └── Databases Assignment 1 Societal Problem Definition.pdf
+├── week2_erd/
+│   ├── Assignment_2_Data_Modeling.pdf
+│   └── before_after_tables.pdf
+├── week3_schema/
+│   ├── queries.sql
+│   ├── relational_schema.txt
+│   └── schema.sql
+└── week5_real_data/
+    ├── data_import_animals.sql
+    ├── Database week 5 Docmentation.pdf
+    ├── insert_intake.sql
+    ├── seed.sql
+    └── shelterdata.sql
 
