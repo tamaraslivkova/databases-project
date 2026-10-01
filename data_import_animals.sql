@@ -97,7 +97,7 @@ INSERT INTO Intake (intake_id, animal_id, intake_date) VALUES (98083, 31313, '20
 INSERT INTO Intake (intake_id, animal_id, intake_date) VALUES (98081, 30476, '2026-07-25 14:14:00');
 INSERT INTO Intake (intake_id, animal_id, intake_date) VALUES (98040, 32295, '2026-08-29 12:37:00');
 INSERT INTO Intake (intake_id, animal_id, intake_date) VALUES (98037, 33221, '2026-09-17 13:36:00');
-INSERT INTO Intake, (intake_id, animal_id, intake_date) VALUES (98036, 33527, '2026-09-23 12:01:00');
+INSERT INTO Intake (intake_id, animal_id, intake_date) VALUES (98036, 33527, '2026-09-23 12:01:00');
 INSERT INTO Intake (intake_id, animal_id, intake_date) VALUES (98034, 30319, '2026-09-17 17:49:00');
 INSERT INTO Intake (intake_id, animal_id, intake_date) VALUES (98032, 33948, '2026-09-26 16:19:00');
 INSERT INTO Intake (intake_id, animal_id, intake_date) VALUES (98031, 33813, '2026-09-26 16:19:00');
