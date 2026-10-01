@@ -46,4 +46,6 @@ INSERT INTO Shelter (name, address) VALUES
 ('Northeast Animal Shelter', '347 Highland Ave'),
 ('PALS Animal Life Savers', '10 Traders Way'),
 ('The Odd Cat Sanctuary', 'PO Box 405'),
-('Animal Rescue League of New Hampshire', '545 Route 101');
+('Animal Rescue League of New Hampshire', '545 Route 101'),
+('Blind Dog Rescue Alliance - MA', 'PO Box 63401'),
+('Friends of Marblehead''s Abandoned Animals', '44 Village St.');
