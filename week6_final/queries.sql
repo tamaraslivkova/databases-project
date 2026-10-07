@@ -87,13 +87,13 @@ ORDER BY total_count DESC;
 
 --author: miki248
 SELECT
-    species,
+    Type AS species,
     COUNT(*) AS total_outcomes,
-    COUNT(CASE WHEN outcome_status = 'Adopted' THEN 1 END) AS adopted_count,
-    ROUND(100.0 * COUNT(CASE WHEN outcome_status = 'Adopted' THEN 1 END) / COUNT(*), 2) AS adoption_rate_pct,
-    COUNT(CASE WHEN outcome_status = 'Euthanasia' THEN 1 END) AS euthanasia_count,
-    ROUND(100.0 * COUNT(CASE WHEN outcome_status = 'Euthanasia' THEN 1 END) / COUNT(*), 2) AS euthanasia_rate_pct
+    COUNT(CASE WHEN `Outcome Status` = 'Adopted' THEN 1 END) AS adopted_count,
+    ROUND(100.0 * COUNT(CASE WHEN `Outcome Status` = 'Adopted' THEN 1 END) / COUNT(*), 2) AS adoption_rate_pct,
+    COUNT(CASE WHEN `Outcome Status` = 'Euthanasia' THEN 1 END) AS euthanasia_count,
+    ROUND(100.0 * COUNT(CASE WHEN `Outcome Status` = 'Euthanasia' THEN 1 END) / COUNT(*), 2) AS euthanasia_rate_pct
 FROM Outcomes
-WHERE DATE_FORMAT(outcome_date, '%Y-%m') = DATE_FORMAT(CURRENT_DATE, '%Y-%m')
-GROUP BY species
+WHERE DATE_FORMAT(`Outcome Date`, '%Y-%m') = DATE_FORMAT(CURRENT_DATE, '%Y-%m')
+GROUP BY Type
 ORDER BY total_outcomes DESC;
