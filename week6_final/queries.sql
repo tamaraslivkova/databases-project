@@ -75,8 +75,12 @@ JOIN Intake ON Animals.animal_id = Intake.animal_id
 ORDER BY Intake.intake_date DESC;
 
 
-
+--@block
 --author: miki248
+--question: Which dog breeds have at least 10 animals in the shelter database?
+--relevance: This query supports shelter capacity planning and animal welfare management by
+--identifying popular dog breeds entering the facility.
+
 SELECT
     breed AS `Primary Breed`,
     COUNT(*) AS total_count
@@ -87,3 +91,16 @@ HAVING total_count >= 10
 ORDER BY total_count DESC;
 
 
+-- @block
+-- author: miki248
+-- question: What is the gender distribution per species?
+-- relevance: It's important for spay/neuter planning
+SELECT
+    LOWER(TRIM(species)) AS species_type,
+    COUNT(*) AS total_count,
+    SUM(CASE WHEN sex = 'Male' THEN 1 ELSE 0 END) AS male_count,
+    SUM(CASE WHEN sex = 'Female' THEN 1 ELSE 0 END) AS female_count,
+    SUM(CASE WHEN sex = 'Unknown' OR sex IS NULL THEN 1 ELSE 0 END) AS unknown_count
+FROM Animals
+GROUP BY LOWER(TRIM(species))
+ORDER BY total_count DESC;
