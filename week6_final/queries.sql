@@ -73,3 +73,27 @@ SELECT
 FROM Animals
 JOIN Intake ON Animals.animal_id = Intake.animal_id
 ORDER BY Intake.intake_date DESC;
+
+
+
+--author: miki248
+SELECT `Primary Breed`, COUNT(*) AS total_count
+FROM animals
+WHERE Type = 'Dog'
+GROUP BY `Primary Breed`
+HAVING COUNT(*) >= 10
+ORDER BY total_count DESC;
+
+
+--author: miki248
+SELECT
+    species,
+    COUNT(*) AS total_outcomes,
+    COUNT(CASE WHEN outcome_status = 'Adopted' THEN 1 END) AS adopted_count,
+    ROUND(100.0 * COUNT(CASE WHEN outcome_status = 'Adopted' THEN 1 END) / COUNT(*), 2) AS adoption_rate_pct,
+    COUNT(CASE WHEN outcome_status = 'Euthanasia' THEN 1 END) AS euthanasia_count,
+    ROUND(100.0 * COUNT(CASE WHEN outcome_status = 'Euthanasia' THEN 1 END) / COUNT(*), 2) AS euthanasia_rate_pct
+FROM Outcomes
+WHERE DATE_FORMAT(outcome_date, '%Y-%m') = DATE_FORMAT(CURRENT_DATE, '%Y-%m')
+GROUP BY species
+ORDER BY total_outcomes DESC;
