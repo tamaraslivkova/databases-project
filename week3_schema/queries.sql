@@ -47,3 +47,26 @@ WHERE NOT EXISTS (
       AND st.role = 'Vet'
 )
 ORDER BY s.shelter_id;
+
+-- author: tamaraslivkova
+-- question: How many animals of each species are taken in per month?
+-- relevance: This can show peaks in intakes per species, so shelters can prepare (capacity, staff, adoption)
+SELECT
+    DATE_FORMAT(Intake.intake_date, '%Y-%m') AS intake_month,
+    Animals.species,
+    COUNT(*) AS total_intakes
+FROM Intake
+JOIN Animals ON Animals.animal_id = Intake.animal_id
+GROUP BY intake_month, Animals.species
+ORDER BY intake_month DESC, total_intakes DESC;
+
+-- author: tamaraslivkova
+-- question: Which animals were taken in recently?
+-- relevance: This helps identify sudden increases in intakes
+SELECT
+    Animals.name AS animal_name,
+    Animals.species,
+    Intake.intake_date
+FROM Animals
+JOIN Intake ON Animals.animal_id = Intake.animal_id
+ORDER BY Intake.intake_date DESC
