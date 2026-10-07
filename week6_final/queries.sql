@@ -81,13 +81,11 @@ ORDER BY Intake.intake_date DESC;
 --relevance: This query supports shelter capacity planning and animal welfare management by
 --identifying popular dog breeds entering the facility.
 
-SELECT
-    breed AS `Primary Breed`,
-    COUNT(*) AS total_count
+SELECT breed, COUNT(*) AS total_count
 FROM Animals
-WHERE species = 'Dog'
+WHERE LOWER(TRIM(species)) = 'dog'
 GROUP BY breed
-HAVING total_count >= 10
+HAVING COUNT(*) >= 10
 ORDER BY total_count DESC;
 
 
