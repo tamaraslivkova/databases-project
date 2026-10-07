@@ -7,10 +7,14 @@ DROP TABLE IF EXISTS Shelter;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
+-- updates for real-world data: a lot of NOT NULL contraints were deleted in this schema, because not everything is
+-- populated because not everything is in the csv files
+-- name length for the shelters had to be increased from 100 to 150 characters
+-- staff table is not populated because there aren't any open source data available
 
 CREATE TABLE Shelter (
     shelter_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
+    name VARCHAR(150) NOT NULL,
     address VARCHAR(255),
     current_capacity INT DEFAULT 0 CHECK (current_capacity >= 0),
     max_capacity INT,

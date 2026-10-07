@@ -16,7 +16,7 @@ https://github.com/user-attachments/assets/fb5e8017-74b8-4e72-8312-ed8693603f8c
 ## Project Structure
 ```text
 databases-project/
-├── resources/
+├── resources/ok
 │   ├── Austin_Animal_Center_Outcomes_20261001.csv
 │   └── petfinder_shelters.csv
 ├── week1/
