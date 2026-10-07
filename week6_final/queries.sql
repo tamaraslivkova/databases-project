@@ -1,4 +1,5 @@
 -- basic queries
+
 -- adding data
 INSERT INTO Animals (shelter_id, name, age, species, breed, sex)
 VALUES (1,'Max',2,'dog','border collie','male');
@@ -15,27 +16,12 @@ WHERE name = 'Max';
 DELETE FROM Animals
 WHERE name = 'Max';
 
+
 -- advanced queries
--- finding the workload (number of staff and animals) per shelter
-SELECT 
-    Shelter.name,
-    COUNT(DISTINCT Staff.staff_id) AS total_staff,
-    COUNT(DISTINCT Animals.animal_id) AS total_animals
-FROM Shelter
-LEFT JOIN Staff ON Shelter.shelter_id = Staff.shelter_id
-LEFT JOIN Animals ON Shelter.shelter_id = Animals.shelter_id
-GROUP BY Shelter.name;
 
--- finding recent animal intakes and with their shelters
-SELECT
-    Animals.name AS animal_name,
-    Animals.species,
-    Intake.intake_date
-FROM Animals
-JOIN Intake ON Animals.animal_id = Intake.animal_id
-ORDER BY Intake.intake_date DESC;
-
--- finding shelters with no vets currently employed
+-- author: Alysha-sa
+-- question: Which shelters have no vets currently employed?
+-- relevance: If animals are ill when they arrive shelters without any vets cannot treat them
 SELECT
     s.shelter_id,
     s.name
@@ -47,3 +33,16 @@ WHERE NOT EXISTS (
       AND st.role = 'Vet'
 )
 ORDER BY s.shelter_id;
+
+-- author: Alysha-sa
+-- question: Which shelters are close to full capacity?
+-- relevance: When shelters are overcrowded proper care for each animal cannot be guaranteed
+SELECT
+    shelter_id,
+    name,
+    current_capacity,
+    max_capacity,
+    ROUND(current_capacity / max_capacity * 100, 1) AS occupancy_pct
+FROM Shelter
+WHERE max_capacity > 0
+ORDER BY occupancy_pct DESC;
