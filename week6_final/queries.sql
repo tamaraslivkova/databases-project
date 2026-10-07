@@ -1,4 +1,5 @@
 -- basic queries
+
 -- adding data
 INSERT INTO Animals (shelter_id, name, age, species, breed, sex)
 VALUES (1,'Max',2,'dog','border collie','male');
@@ -15,35 +16,33 @@ WHERE name = 'Max';
 DELETE FROM Animals
 WHERE name = 'Max';
 
+
 -- advanced queries
--- finding the workload (number of staff and animals) per shelter
-SELECT 
-    Shelter.name,
-    COUNT(DISTINCT Staff.staff_id) AS total_staff,
-    COUNT(DISTINCT Animals.animal_id) AS total_animals
-FROM Shelter
-LEFT JOIN Staff ON Shelter.shelter_id = Staff.shelter_id
-LEFT JOIN Animals ON Shelter.shelter_id = Animals.shelter_id
-GROUP BY Shelter.name;
 
--- finding recent animal intakes and with their shelters
+-- author: Alysha-sa
+-- question: Which animals have been in a shelter for over 5 months?
+-- relevance: One of the articles, Raudies et al. (2021), found that dogs staying in a shelter for longer than 5 months can develop stress and behavioural problems. This lowers their chance for adoption so these animals need to be prioritized in adoption
+-- note: This query uses a reference date of 2026-10-07, so 5 months earlier
 SELECT
-    Animals.name AS animal_name,
+    Animals.name,
     Animals.species,
+    Shelter.name AS shelter_name,
     Intake.intake_date
-FROM Animals
-JOIN Intake ON Animals.animal_id = Intake.animal_id
-ORDER BY Intake.intake_date DESC;
+FROM Intake
+JOIN Animals ON Animals.animal_id = Intake.animal_id
+JOIN Shelter ON Shelter.shelter_id = Intake.shelter_id
+WHERE Intake.intake_date < '2026-05-07'
+ORDER BY Intake.intake_date ASC;
 
--- finding shelters with no vets currently employed
+-- author: Alysha-sa
+-- question: Which shelters are close to full capacity?
+-- relevance: When shelters are overcrowded proper care for each animal cannot be guaranteed
 SELECT
-    s.shelter_id,
-    s.name
-FROM Shelter s
-WHERE NOT EXISTS (
-    SELECT 1
-    FROM Staff st
-    WHERE st.shelter_id = s.shelter_id
-      AND st.role = 'Vet'
-)
-ORDER BY s.shelter_id;
+    shelter_id,
+    name,
+    current_capacity,
+    max_capacity,
+    ROUND(current_capacity / max_capacity * 100, 1) AS occupancy_pct
+FROM Shelter
+WHERE max_capacity > 0
+ORDER BY occupancy_pct DESC;
