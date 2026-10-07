@@ -20,19 +20,19 @@ WHERE name = 'Max';
 -- advanced queries
 
 -- author: Alysha-sa
--- question: Which shelters have no vets currently employed?
--- relevance: If animals are ill when they arrive shelters without any vets cannot treat them
+-- question: Which animals have been in a shelter for over 5 months?
+-- relevance: One of the articles, Raudies et al. (2021), found that dogs staying in a shelter for longer than 5 months can develop stress and behavioural problems. This lowers their chance for adoption so these animals need to be prioritized in adoption
+-- note: This query uses a reference date of 2026-10-07, so 5 months earlier
 SELECT
-    s.shelter_id,
-    s.name
-FROM Shelter s
-WHERE NOT EXISTS (
-    SELECT 1
-    FROM Staff st
-    WHERE st.shelter_id = s.shelter_id
-      AND st.role = 'Vet'
-)
-ORDER BY s.shelter_id;
+    Animals.name,
+    Animals.species,
+    Shelter.name AS shelter_name,
+    Intake.intake_date
+FROM Intake
+JOIN Animals ON Animals.animal_id = Intake.animal_id
+JOIN Shelter ON Shelter.shelter_id = Intake.shelter_id
+WHERE Intake.intake_date < '2026-05-07'
+ORDER BY Intake.intake_date ASC;
 
 -- author: Alysha-sa
 -- question: Which shelters are close to full capacity?
