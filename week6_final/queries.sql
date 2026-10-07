@@ -19,6 +19,7 @@ WHERE name = 'Max';
 
 -- advanced queries
 
+-- @block
 -- author: Alysha-sa
 -- question: Which animals have been in a shelter for over 5 months?
 -- relevance: One of the articles, Raudies et al. (2021), found that dogs staying in a shelter for longer than 5 months can develop stress and behavioural problems. This lowers their chance for adoption so these animals need to be prioritized in adoption
@@ -34,6 +35,7 @@ JOIN Shelter ON Shelter.shelter_id = Intake.shelter_id
 WHERE Intake.intake_date < '2026-05-07'
 ORDER BY Intake.intake_date ASC;
 
+-- @block
 -- author: Alysha-sa
 -- question: Which shelters are close to full capacity?
 -- relevance: When shelters are overcrowded proper care for each animal cannot be guaranteed
@@ -47,6 +49,7 @@ FROM Shelter
 WHERE max_capacity > 0
 ORDER BY occupancy_pct DESC;
 
+-- @block
 -- author: tamaraslivkova
 -- question: How many animals of each species are taken in per month?
 -- relevance: This can show peaks in intakes per species, so shelters can prepare (capacity, staff, adoption)
@@ -59,6 +62,7 @@ JOIN Animals ON Animals.animal_id = Intake.animal_id
 GROUP BY intake_month, Animals.species
 ORDER BY intake_month DESC, total_intakes DESC;
 
+-- @block
 -- author: tamaraslivkova
 -- question: Which animals were taken in recently?
 -- relevance: This helps identify sudden increases in intakes
@@ -68,4 +72,4 @@ SELECT
     Intake.intake_date
 FROM Animals
 JOIN Intake ON Animals.animal_id = Intake.animal_id
-ORDER BY Intake.intake_date DESC
+ORDER BY Intake.intake_date DESC;
